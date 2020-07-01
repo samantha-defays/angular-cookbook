@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
+import { UserService } from '../user.service';
+import { User } from '../user';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -15,8 +18,14 @@ export class LoginComponent implements OnInit {
   });
   submitted = false;
   error = false;
+  fullName = '';
 
-  constructor(private auth: AuthService, private router: Router) {}
+  constructor(
+    private auth: AuthService,
+    private router: Router,
+    private userService: UserService,
+    private toastr: ToastrService
+  ) {}
 
   ngOnInit(): void {}
 
@@ -35,6 +44,9 @@ export class LoginComponent implements OnInit {
       (error) => {
         // Gestion de l'échec de l'authentification
         this.error = true;
+        this.toastr.warning(
+          "Il semble qu'il y ait eu une erreur lors de la connexion"
+        );
       }
     );
   }

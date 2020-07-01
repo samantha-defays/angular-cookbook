@@ -1,1 +1,29 @@
-<p>recipe works!</p>
+<div class="container mt-3">
+  <h1>Mes recettes</h1>
+
+  <div class="row mt-3">
+    <a routerLink="/recipes/create" class="btn btn-block btn-primary">Nouvelle recette</a>
+    <div class="col-sm-12 col-m-12 col-lg-4 mb-5 mt-4" *ngFor="let r of recipes">
+      <div class="card">
+        <img src="{{ r.illustration }}" class="card-img-top" alt="{{ r.title }}">
+        <div class="card-body">
+          <p>
+            <span class="badge badge-secondary ml-1 mr-1" *ngFor="let category of r.categories">
+              {{ category.name }}
+            </span>
+          </p>
+          <h5 class="card-title">{{ r.title }}</h5>
+          <p class="card-text">{{ r.description}}</p>
+          <p>
+            <small>
+              {{ r.createdAt | date:'dd/MM/yyyy'}}
+            </small>
+          </p>
+          <a routerLink="/recipes/{{r.id}}" class="btn btn-outline-primary btn-sm">Voir plus...</a>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</div>

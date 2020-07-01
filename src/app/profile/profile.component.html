@@ -1,1 +1,13 @@
-<p>profile works!</p>
+<div class="container mt-3">
+  <h1>Mon profil</h1>
+
+  <div class="row" *ngIf="user">
+    <div class="col">
+      <img src="{{ user.photo }}" alt="{{ user.firstName}} {{user.lastName}}">
+      <h2>{{ user.firstName }} {{user.lastName | uppercase }}</h2>
+      <p>{{ user.email }}</p>
+
+      <a routerLink="/profile/edit" class="btn btn-info">Modifier mon profil</a>
+    </div>
+  </div>
+</div>

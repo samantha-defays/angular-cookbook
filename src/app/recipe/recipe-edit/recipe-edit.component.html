@@ -1,0 +1,104 @@
+<div class="container mt-3 mb-5">
+  <h1>Modifier la recette</h1>
+  <div class="row justify-content-center">
+    <div class="col-sm-10 col-md-10 col-lg-6">
+
+      <form [formGroup]="form" (ngSubmit)="handleSubmit()">
+        <!-- TITLE -->
+        <div class="form-group">
+          <label for="title">Nom de la recette</label>
+          <input type="text" id="title" class="form-control" formControlName="title"
+            [class.is-invalid]="submitted && form.controls['title'].invalid">
+          <p class="invalid-feedback">
+            {{ form.controls['title'].getError('invalid')}}
+          </p>
+        </div>
+        <!-- DESCRIPTION -->
+        <div class="form-group">
+          <label for="description">Description brève</label>
+          <textarea id="description" class="form-control" formControlName="description"
+            [class.is-invalid]="submitted && form.controls['description'].invalid"></textarea>
+          <p class="invalid-feedback">
+            {{ form.controls['description'].getError('invalid')}}
+          </p>
+        </div>
+        <!-- INGREDIENTS -->
+        <div class="form-group">
+          <label for="ingredients">Liste des ingrédients</label>
+          <textarea id="ingredients" class="form-control" formControlName="ingredients"
+            [class.is-invalid]="submitted && form.controls['ingredients'].invalid"></textarea>
+          <p class="invalid-feedback">
+            {{ form.controls['ingredients'].getError('invalid')}}
+          </p>
+        </div>
+        <!-- CONTENT -->
+        <div class="form-group">
+          <label for="content">Etapes de la recette</label>
+          <textarea id="content" class="form-control" formControlName="content"
+            [class.is-invalid]="submitted && form.controls['content'].invalid"></textarea>
+          <p class="invalid-feedback">
+            {{ form.controls['content'].getError('invalid')}}
+          </p>
+        </div>
+        <!-- PREPARATION TIME -->
+        <div class="form-group">
+          <label for="preparationTime">Temps de préparation (en minutes)</label>
+          <input type="number" id="preparationTime" class="form-control" formControlName="preparationTime"
+            [class.is-invalid]="submitted && form.controls['preparationTime'].invalid">
+          <p class="invalid-feedback">
+            {{ form.controls['preparationTime'].getError('invalid')}}
+          </p>
+        </div>
+        <!-- COOKING TIME -->
+        <div class="form-group">
+          <label for="cookingTime">Temps de cuisson (en minutes)</label>
+          <input type="number" id="cookingTime" class="form-control" formControlName="cookingTime"
+            [class.is-invalid]="submitted && form.controls['cookingTime'].invalid">
+          <p class="invalid-feedback">
+            {{ form.controls['cookingTime'].getError('invalid')}}
+          </p>
+        </div>
+        <!-- UTENSILS -->
+        <div class="form-group">
+          <label for="utensils">Ustensiles nécessaires</label>
+          <textarea id="utensils" class="form-control" formControlName="utensils"
+            [class.is-invalid]="submitted && form.controls['utensils'].invalid"></textarea>
+          <p class="invalid-feedback">
+            {{ form.controls['utensils'].getError('invalid')}}
+          </p>
+        </div>
+        <!-- ILLUSTRATION -->
+        <div class="form-group">
+          <label for="illustration">URL de photo d'illustration</label>
+          <input type="text" id="illustration" class="form-control" formControlName="illustration"
+            [class.is-invalid]="submitted && form.controls['illustration'].invalid">
+          <p class="invalid-feedback">
+            {{ form.controls['illustration'].getError('invalid')}}
+          </p>
+        </div>
+        <!-- CATEGORIES -->
+        <ng-container *ngIf="recipeCategories">
+          <div class="form-group">
+
+            <div class="form-check form-check-inline" *ngFor="let group of categories.controls; index as i">
+
+              <input type="checkbox" [formControl]="group" class="form-check-input" id="{{ i }}"
+                (change)="getSelectedCategories()">
+
+              <label class="form-check-label" for="{{ i }}" formArrayName="categories">
+                {{recipeCategories[i].name}}
+              </label>
+
+            </div>
+
+          </div>
+        </ng-container>
+        <!-- FIN CATEGORIES -->
+
+        <button class="btn btn-primary btn-block" type="submit">Enregistrer</button>
+      </form>
+
+    </div>
+  </div>
+
+</div>

@@ -19,15 +19,15 @@
     </ul>
     <ul class="navbar-nav ml-auto">
       <li class="nav-item">
-        <a routerLink="/register" class="btn btn-link">
+        <a routerLink="/register" class="btn btn-link" *ngIf="!isAuthenticated">
           S'inscrire
         </a>
       </li>
       <li class="nav-item">
-        <a class="btn btn-secondary" routerLink="/login">Connexion</a>
+        <a class="btn btn-primary" routerLink="/login" *ngIf="!isAuthenticated">Connexion</a>
       </li>
       <li class="nav-item">
-        <a class="btn btn-danger text-white" (click)="handleLogout()">Déconnexion</a>
+        <a class="btn btn-danger text-white" (click)="handleLogout()" *ngIf="isAuthenticated">Déconnexion</a>
       </li>
     </ul>
   </div>
