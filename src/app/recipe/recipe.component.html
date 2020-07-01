@@ -13,13 +13,13 @@
             </span>
           </p>
           <h5 class="card-title">{{ r.title }}</h5>
-          <p class="card-text">{{ r.description}}</p>
+          <div class="card-text" [innerHTML]="r.description"></div>
           <p>
             <small>
               {{ r.createdAt | date:'dd/MM/yyyy'}}
             </small>
           </p>
-          <a routerLink="/recipes/{{r.id}}" class="btn btn-outline-primary btn-sm">Voir plus...</a>
+          <a routerLink="/recipes/view/{{r.id}}" class="btn btn-outline-primary btn-sm">Voir plus...</a>
         </div>
       </div>
     </div>

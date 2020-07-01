@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { AngularEditorModule } from '@kolkov/angular-editor';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -36,6 +37,7 @@ import { ProfileEditComponent } from './profile/profile-edit/profile-edit.compon
     HttpClientModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
+    AngularEditorModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },

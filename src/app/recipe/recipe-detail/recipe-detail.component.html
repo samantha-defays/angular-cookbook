@@ -13,15 +13,15 @@
     <div class="col-sm-12 col-m-12 col-lg-5 border">
       <img src="{{ recipe.illustration }}" alt="{{recipe.title}}" width="100%">
       <h3>Ingrédients</h3>
-      <p>{{ recipe.ingredients }}</p>
+      <div [innerHTML]="recipe.ingredients"></div>
       <h3>Ustensiles</h3>
-      <p>{{ recipe.utensils }}</p>
+      <div [innerHTML]="recipe.utensils"></div>
     </div>
     <div class="col-sm-12 col-m-12 col-lg-7 border" *ngIf="recipe">
       <h3>Description</h3>
-      <p>{{ recipe.description }}</p>
+      <div [innerHTML]="recipe.description"></div>
       <h3>Recette</h3>
-      <p>{{ recipe.content }}</p>
+      <div [innerHTML]="recipe.content"></div>
     </div>
   </div> <!-- Fin de row -->
 </div>

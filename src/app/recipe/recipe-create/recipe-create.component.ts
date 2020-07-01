@@ -6,7 +6,7 @@ import { RecipeService } from '../recipe.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CategoryService } from '../category.service';
 import { ToastrService } from 'ngx-toastr';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { AngularEditorConfig } from '@kolkov/angular-editor';
 
 @Component({
   selector: 'app-recipe-create',
@@ -29,6 +29,73 @@ export class RecipeCreateComponent implements OnInit {
     illustration: new FormControl(''),
     categories: new FormArray([]),
   });
+
+  editorConfig: AngularEditorConfig = {
+    editable: true,
+    spellcheck: true,
+    height: 'auto',
+    minHeight: '0',
+    maxHeight: 'auto',
+    width: 'auto',
+    minWidth: '0',
+    translate: 'yes',
+    enableToolbar: true,
+    showToolbar: true,
+    placeholder: 'Votre texte ici',
+    defaultParagraphSeparator: '',
+    defaultFontName: '',
+    defaultFontSize: '',
+    fonts: [
+      { class: 'arial', name: 'Arial' },
+      { class: 'times-new-roman', name: 'Times New Roman' },
+      { class: 'calibri', name: 'Calibri' },
+    ],
+    customClasses: [
+      {
+        name: 'quote',
+        class: 'quote',
+      },
+      {
+        name: 'redText',
+        class: 'redText',
+      },
+      {
+        name: 'titleText',
+        class: 'titleText',
+        tag: 'h1',
+      },
+    ],
+    uploadUrl: 'v1/image',
+    uploadWithCredentials: false,
+    sanitize: true,
+    toolbarPosition: 'top',
+    toolbarHiddenButtons: [
+      [
+        'undo',
+        'redo',
+        'strikeThrough',
+        'superscript',
+        'subscript',
+        'justifyLeft',
+        'justifyCenter',
+        'justifyRight',
+        'indent',
+        'outdent',
+        'fontName',
+      ],
+      [
+        'fontSize',
+        'backgroundColor',
+        'insertImage',
+        'insertVideo',
+        'insertHorizontalRule',
+        'customClasses',
+        'link',
+        'unlink',
+        'removeFormat',
+      ],
+    ],
+  };
 
   constructor(
     private recipeService: RecipeService,

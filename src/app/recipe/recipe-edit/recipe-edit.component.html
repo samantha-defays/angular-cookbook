@@ -16,55 +16,72 @@
         <!-- DESCRIPTION -->
         <div class="form-group">
           <label for="description">Description brève</label>
-          <textarea id="description" class="form-control" formControlName="description"
-            [class.is-invalid]="submitted && form.controls['description'].invalid"></textarea>
-          <p class="invalid-feedback">
-            {{ form.controls['description'].getError('invalid')}}
+          <!-- <textarea id="description" class="form-control" formControlName="description" [class.is-invalid]="
+              submitted && form.controls['description'].invalid
+            "></textarea> -->
+          <angular-editor formControlName="description" id="description" [config]="editorConfig" [class.is-invalid]="
+          submitted && form.controls['description'].invalid">
+          </angular-editor>
+          <p class=" invalid-feedback">
+            {{ form.controls["description"].getError("invalid") }}
           </p>
         </div>
         <!-- INGREDIENTS -->
         <div class="form-group">
           <label for="ingredients">Liste des ingrédients</label>
-          <textarea id="ingredients" class="form-control" formControlName="ingredients"
-            [class.is-invalid]="submitted && form.controls['ingredients'].invalid"></textarea>
+          <!-- <textarea id="ingredients" class="form-control" formControlName="ingredients" [class.is-invalid]="
+              submitted && form.controls['ingredients'].invalid
+            "></textarea> -->
+          <angular-editor formControlName="ingredients" id="ingredients" [config]="editorConfig" [class.is-invalid]="
+          submitted && form.controls['ingredients'].invalid">
+          </angular-editor>
           <p class="invalid-feedback">
-            {{ form.controls['ingredients'].getError('invalid')}}
+            {{ form.controls["ingredients"].getError("invalid") }}
           </p>
         </div>
         <!-- CONTENT -->
         <div class="form-group">
           <label for="content">Etapes de la recette</label>
-          <textarea id="content" class="form-control" formControlName="content"
-            [class.is-invalid]="submitted && form.controls['content'].invalid"></textarea>
+          <!-- <textarea id="content" class="form-control" formControlName="content"
+            [class.is-invalid]="submitted && form.controls['content'].invalid"></textarea> -->
+          <angular-editor formControlName="content" id="content" [config]="editorConfig" [class.is-invalid]="
+          submitted && form.controls['content'].invalid">
+          </angular-editor>
           <p class="invalid-feedback">
-            {{ form.controls['content'].getError('invalid')}}
+            {{ form.controls["content"].getError("invalid") }}
           </p>
         </div>
         <!-- PREPARATION TIME -->
         <div class="form-group">
           <label for="preparationTime">Temps de préparation (en minutes)</label>
           <input type="number" id="preparationTime" class="form-control" formControlName="preparationTime"
-            [class.is-invalid]="submitted && form.controls['preparationTime'].invalid">
+            [class.is-invalid]="
+              submitted && form.controls['preparationTime'].invalid
+            " />
           <p class="invalid-feedback">
-            {{ form.controls['preparationTime'].getError('invalid')}}
+            {{ form.controls["preparationTime"].getError("invalid") }}
           </p>
         </div>
         <!-- COOKING TIME -->
         <div class="form-group">
           <label for="cookingTime">Temps de cuisson (en minutes)</label>
-          <input type="number" id="cookingTime" class="form-control" formControlName="cookingTime"
-            [class.is-invalid]="submitted && form.controls['cookingTime'].invalid">
+          <input type="number" id="cookingTime" class="form-control" formControlName="cookingTime" [class.is-invalid]="
+              submitted && form.controls['cookingTime'].invalid
+            " />
           <p class="invalid-feedback">
-            {{ form.controls['cookingTime'].getError('invalid')}}
+            {{ form.controls["cookingTime"].getError("invalid") }}
           </p>
         </div>
         <!-- UTENSILS -->
         <div class="form-group">
           <label for="utensils">Ustensiles nécessaires</label>
-          <textarea id="utensils" class="form-control" formControlName="utensils"
-            [class.is-invalid]="submitted && form.controls['utensils'].invalid"></textarea>
+          <!-- <textarea id="utensils" class="form-control" formControlName="utensils"
+            [class.is-invalid]="submitted && form.controls['utensils'].invalid"></textarea> -->
+          <angular-editor formControlName="utensils" id="utensils" [config]="editorConfig" [class.is-invalid]="
+          submitted && form.controls['utensils'].invalid">
+          </angular-editor>
           <p class="invalid-feedback">
-            {{ form.controls['utensils'].getError('invalid')}}
+            {{ form.controls["utensils"].getError("invalid") }}
           </p>
         </div>
         <!-- ILLUSTRATION -->
