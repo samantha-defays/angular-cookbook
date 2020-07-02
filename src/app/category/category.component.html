@@ -1,0 +1,17 @@
+<div class="container mt-3">
+  <h1>Catégories</h1>
+
+  <div class="row mt-3 mb-3">
+    <div class="col-12">
+      <nav class="d-flex flex-wrap align-items-center justify-content-center">
+        <a *ngFor="let c of categories" routerLink="/categories/{{ c.id }}"
+          class="btn btn-secondary ml-1 mr-1 mt-1 mb-1">
+          {{ c.name }}
+        </a>
+      </nav>
+    </div>
+  </div>
+  <div class="row">
+    <router-outlet></router-outlet>
+  </div>
+</div>

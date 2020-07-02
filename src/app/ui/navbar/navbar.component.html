@@ -27,7 +27,7 @@
         <a class="btn btn-primary" routerLink="/login" *ngIf="!isAuthenticated">Connexion</a>
       </li>
       <li class="nav-item">
-        <a class="btn btn-danger text-white" (click)="handleLogout()" *ngIf="isAuthenticated">Déconnexion</a>
+        <a class="btn btn-secondary text-white" (click)="handleLogout()" *ngIf="isAuthenticated">Déconnexion</a>
       </li>
     </ul>
   </div>

@@ -5,6 +5,17 @@ body {
   background-color: #f8f9fa;
 }
 
-.main-content {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   text-align: center;
+}
+
+.angular-editor-textarea,
+.angular-editor,
+.angular-editor-toolbar {
+  background-color: #FFFFFF !important;
 }

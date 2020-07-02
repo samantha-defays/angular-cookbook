@@ -5,7 +5,7 @@
       <form [formGroup]="form" (ngSubmit)="handleSubmit()">
         <!-- TITLE -->
         <div class="form-group">
-          <label for="title">Nom de la recette</label>
+          <label for="title">Nom de la recette <span class="badge badge-pill badge-primary">Obligatoire</span></label>
           <input type="text" id="title" class="form-control" formControlName="title"
             [class.is-invalid]="submitted && form.controls['title'].invalid" />
           <p class="invalid-feedback">
@@ -14,7 +14,8 @@
         </div>
         <!-- DESCRIPTION -->
         <div class="form-group">
-          <label for="description">Description brève</label>
+          <label for="description">Description brève <span
+              class="badge badge-pill badge-primary">Obligatoire</span></label>
           <!-- <textarea id="description" class="form-control" formControlName="description" [class.is-invalid]="
               submitted && form.controls['description'].invalid
             "></textarea> -->
@@ -27,7 +28,8 @@
         </div>
         <!-- INGREDIENTS -->
         <div class="form-group">
-          <label for="ingredients">Liste des ingrédients</label>
+          <label for="ingredients">Liste des ingrédients <span
+              class="badge badge-pill badge-primary">Obligatoire</span></label>
           <!-- <textarea id="ingredients" class="form-control" formControlName="ingredients" [class.is-invalid]="
               submitted && form.controls['ingredients'].invalid
             "></textarea> -->
@@ -40,7 +42,8 @@
         </div>
         <!-- CONTENT -->
         <div class="form-group">
-          <label for="content">Etapes de la recette</label>
+          <label for="content">Etapes de la recette <span
+              class="badge badge-pill badge-primary">Obligatoire</span></label>
           <!-- <textarea id="content" class="form-control" formControlName="content"
             [class.is-invalid]="submitted && form.controls['content'].invalid"></textarea> -->
           <angular-editor formControlName="content" id="content" [config]="editorConfig" [class.is-invalid]="
@@ -52,7 +55,8 @@
         </div>
         <!-- PREPARATION TIME -->
         <div class="form-group">
-          <label for="preparationTime">Temps de préparation (en minutes)</label>
+          <label for="preparationTime">Temps de préparation (en minutes) <span
+              class="badge badge-pill badge-info">facultatif</span></label>
           <input type="number" id="preparationTime" class="form-control" formControlName="preparationTime"
             [class.is-invalid]="
               submitted && form.controls['preparationTime'].invalid
@@ -63,7 +67,8 @@
         </div>
         <!-- COOKING TIME -->
         <div class="form-group">
-          <label for="cookingTime">Temps de cuisson (en minutes)</label>
+          <label for="cookingTime">Temps de cuisson (en minutes) <span
+              class="badge badge-pill badge-info">facultatif</span></label>
           <input type="number" id="cookingTime" class="form-control" formControlName="cookingTime" [class.is-invalid]="
               submitted && form.controls['cookingTime'].invalid
             " />
@@ -73,7 +78,8 @@
         </div>
         <!-- UTENSILS -->
         <div class="form-group">
-          <label for="utensils">Ustensiles nécessaires</label>
+          <label for="utensils">Ustensiles nécessaires <span
+              class="badge badge-pill badge-info">facultatif</span></label>
           <!-- <textarea id="utensils" class="form-control" formControlName="utensils"
             [class.is-invalid]="submitted && form.controls['utensils'].invalid"></textarea> -->
           <angular-editor formControlName="utensils" id="utensils" [config]="editorConfig" [class.is-invalid]="
@@ -85,7 +91,8 @@
         </div>
         <!-- ILLUSTRATION -->
         <div class="form-group">
-          <label for="illustration">URL de photo d'illustration</label>
+          <label for="illustration">URL de photo d'illustration <span
+              class="badge badge-pill badge-info">facultatif</span></label>
           <input type="text" id="illustration" class="form-control" formControlName="illustration" [class.is-invalid]="
               submitted && form.controls['illustration'].invalid
             " />
@@ -96,6 +103,7 @@
         <!-- CATEGORIES -->
         <ng-container *ngIf="recipeCategories">
           <div class="form-group">
+            <label class="d-block">Catégories <span class="badge badge-pill badge-info">facultatif</span></label>
             <div class="form-check form-check-inline" *ngFor="let group of categories.controls; index as i">
               <input type="checkbox" [formControl]="group" class="form-check-input" id="{{ i }}"
                 (change)="getSelectedCategories()" />

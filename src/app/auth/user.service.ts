@@ -21,6 +21,10 @@ export class UserService {
     return this.http.put<User>(environment.apiUrl + '/users/' + user.id, user);
   }
 
+  create(user: User) {
+    return this.http.post<User>(environment.apiUrl + '/users', user);
+  }
+
   getId() {
     return (this.id = this.auth.getIdFromToken());
   }

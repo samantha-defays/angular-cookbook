@@ -5,10 +5,11 @@ import { RecipeService } from '../recipe.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Category } from '../category';
-import { CategoryService } from '../category.service';
+import { CategoryService } from '../../category/category.service';
 import { map, switchMap } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 
 @Component({
   selector: 'app-recipe-edit',
@@ -106,10 +107,12 @@ export class RecipeEditComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private categoryService: CategoryService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private ngxService: NgxUiLoaderService
   ) {}
 
   ngOnInit(): void {
+    this.ngxService.start();
     this.categories$ = this.categoryService.findAll();
     this.categories$.subscribe((categories) => {
       this.recipeCategories = categories;
@@ -134,6 +137,7 @@ export class RecipeEditComponent implements OnInit {
           );
         });
         this.form.patchValue(this.recipe);
+        this.ngxService.stop();
       });
   }
 
@@ -171,9 +175,11 @@ export class RecipeEditComponent implements OnInit {
   }
 
   handleSubmit() {
+    this.ngxService.start();
     this.submitted = true;
 
     if (this.form.invalid) {
+      this.ngxService.stop();
       return;
     }
 
@@ -186,11 +192,13 @@ export class RecipeEditComponent implements OnInit {
       .subscribe(
         (recipe) => {
           // succes
+          this.ngxService.stop();
           this.toastr.success('Recette modifiée !');
           this.router.navigateByUrl('/recipes');
         },
         (error) => {
           // error
+          this.ngxService.stop();
           if (error.status === 400 && error.error.violations) {
             for (const violation of error.error.violations) {
               const nomDuChamp = violation.propertyPath;

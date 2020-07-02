@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AngularEditorModule } from '@kolkov/angular-editor';
+import { NgxUiLoaderModule } from 'ngx-ui-loader';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,6 +18,10 @@ import { ToastrModule } from 'ngx-toastr';
 import { RecipeEditComponent } from './recipe/recipe-edit/recipe-edit.component';
 import { RecipeCreateComponent } from './recipe/recipe-create/recipe-create.component';
 import { ProfileEditComponent } from './profile/profile-edit/profile-edit.component';
+import { PaginationComponent } from './ui/pagination/pagination.component';
+import { CategoryComponent } from './category/category.component';
+import { CategoryRecipeComponent } from './category/category-recipe/category-recipe.component';
+import { RegisterComponent } from './auth/register/register.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +34,10 @@ import { ProfileEditComponent } from './profile/profile-edit/profile-edit.compon
     RecipeEditComponent,
     RecipeCreateComponent,
     ProfileEditComponent,
+    PaginationComponent,
+    CategoryComponent,
+    CategoryRecipeComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,6 +47,7 @@ import { ProfileEditComponent } from './profile/profile-edit/profile-edit.compon
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     AngularEditorModule,
+    NgxUiLoaderModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },

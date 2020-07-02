@@ -8,9 +8,13 @@ import { RecipeEditComponent } from './recipe/recipe-edit/recipe-edit.component'
 import { RecipeCreateComponent } from './recipe/recipe-create/recipe-create.component';
 import { ProfileEditComponent } from './profile/profile-edit/profile-edit.component';
 import { AuthGuard } from './auth/auth.guard';
+import { CategoryComponent } from './category/category.component';
+import { CategoryRecipeComponent } from './category/category-recipe/category-recipe.component';
+import { RegisterComponent } from './auth/register/register.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
   {
     path: '',
     component: RecipeComponent,
@@ -38,6 +42,17 @@ const routes: Routes = [
     path: 'recipes/view/:id',
     component: RecipeDetailComponent,
     canActivate: [AuthGuard],
+  },
+  {
+    path: 'categories',
+    component: CategoryComponent,
+    canActivate: [AuthGuard],
+    children: [
+      {
+        path: ':id',
+        component: CategoryRecipeComponent,
+      },
+    ],
   },
 ];
 
