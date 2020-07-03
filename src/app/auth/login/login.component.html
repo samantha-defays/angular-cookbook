@@ -5,6 +5,11 @@
     <!-- Icon -->
     <div class="fadeIn first mt-1">
       <h2>Connexion</h2>
+
+      <div class="alert alert-danger" *ngIf="error && !blankSubmit">
+        Le compte utilisateur n'existe pas ou les données fournies ne correspondent
+        pas
+      </div>
     </div>
 
     <!-- Login Form -->
@@ -40,54 +45,3 @@
 
   </div>
 </div>
-
-<!-- <div class="w-50 mx-auto pt-3">
-  <h2>Connexion</h2>
-  <div class="alert alert-danger" *ngIf="error">
-    Le compte utilisateur n'existe pas ou les données fournies ne correspondent
-    pas
-  </div>
-  <form id="login-form" [formGroup]="form" (ngSubmit)="handleSubmit()">
-    <div class="form-group">
-      <label for="email" class="sr-only">Adresse email</label>
-      <input
-        type="text"
-        class="form-control"
-        id="email"
-        placeholder="Adresse email"
-        formControlName="username"
-        [class.is-invalid]="form.controls['username'].invalid && submitted"
-      />
-      <p
-        class="invalid-feedback"
-        *ngIf="form.controls['username'].hasError('required') && submitted"
-      >
-        L'email est obligatoire
-      </p>
-      <p
-        class="invalid-feedback"
-        *ngIf="form.controls['username'].hasError('email') && submitted"
-      >
-        Le format de l'adresse n'est pas valide
-      </p>
-    </div>
-    <div class="form-group">
-      <label for="password" class="sr-only">Mot de passe</label>
-      <input
-        type="password"
-        class="form-control"
-        id="password"
-        placeholder="Mot de passe"
-        formControlName="password"
-        [class.is-invalid]="form.controls['password'].invalid && submitted"
-      />
-      <p
-        class="invalid-feedback"
-        *ngIf="form.controls['password'].hasError('required') && submitted"
-      >
-        Le mot de passe est obligatoire
-      </p>
-    </div>
-    <button class="btn btn-primary btn-block" type="submit">Connexion</button>
-  </form>
-</div> -->

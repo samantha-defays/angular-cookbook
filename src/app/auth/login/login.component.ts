@@ -20,6 +20,7 @@ export class LoginComponent implements OnInit {
   submitted = false;
   error = false;
   fullName = '';
+  blankSubmit = false;
 
   constructor(
     private auth: AuthService,
@@ -38,6 +39,7 @@ export class LoginComponent implements OnInit {
     if (this.form.invalid) {
       this.ngxService.stop();
       this.error = true;
+      this.blankSubmit = true;
       return;
     }
 
@@ -46,12 +48,14 @@ export class LoginComponent implements OnInit {
         // Authentification réussie
         this.ngxService.stop();
         this.error = false;
+        this.blankSubmit = false;
         this.router.navigateByUrl('/');
       },
       (error) => {
         // Gestion de l'échec de l'authentification
         this.ngxService.stop();
         this.error = true;
+        this.blankSubmit = false;
         this.toastr.warning(
           "Il semble qu'il y ait eu une erreur lors de la connexion"
         );
