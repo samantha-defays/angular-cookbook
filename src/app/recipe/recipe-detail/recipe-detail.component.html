@@ -1,4 +1,92 @@
-<div class="container mt-3" *ngIf="recipe">
+<div class="section section-header-blog">
+  <div class="parallax filter filter-color-black">
+    <div class="image" style="background-image:url('assets/images/recipe-header.jpg')">
+    </div>
+    <div class="container">
+      <div class="content">
+        <div class="title-area">
+          <h1 *ngIf="recipe.title">{{ recipe.title }}</h1>
+          <div class="separator separator-danger">✻</div>
+          <h3>“On doit mettre tout son coeur dans la cuisine.”</h3>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- FIN DU HEADER -->
+
+<div class="section">
+  <div class="container">
+    <div class="row">
+
+      <div class="col-md-8">
+        <div class="content-blog">
+          <h3 class="text-danger">En quelques mots...</h3>
+          <div [innerHTML]="recipe.description"></div>
+
+          <h3 class="text-danger">Ingrédients</h3>
+          <div [innerHTML]="recipe.ingredients">
+          </div>
+
+          <h3 class="text-danger">Matériel nécessaire</h3>
+          <div [innerHTML]="recipe.utensils">
+          </div>
+
+          <div class="separator separator-danger">✻</div>
+
+          <h3 class="text-danger">Etapes</h3>
+          <div [innerHTML]="recipe.content"></div>
+
+        </div>
+      </div>
+
+      <div class="col-md-3 col-md-offset-1 text-center">
+
+        <ng-container *ngIf="recipe.preparationTime">
+          <h3 class="social-title">Préparation</h3>
+          <span class="label label-fill label-danger ml-1">{{ recipe.preparationTime }} min</span>
+        </ng-container>
+
+        <ng-container *ngIf="recipe.cookingTime">
+          <h3 class="social-title">Cuisson</h3>
+          <span class="label label-fill label-danger ml-1">{{ recipe.cookingTime }} min</span>
+        </ng-container>
+
+        <ng-container *ngIf="recipe.categories">
+          <h3 class="social-title">Catégories</h3>
+          <p *nFor="let c of recipe.categories">
+            <span class="label label-fill label-danger ml-1">{{ c.name }}</span>
+          </p>
+        </ng-container>
+
+        <div>
+          <div class="separator separator-danger">✻</div>
+          <a routerLink="/recipes/edit/{{ recipe.id }}" class="btn btn-simple btn-danger">
+            <i class="fas fa-pencil-alt"></i> Editer
+          </a>
+          <a (click)="handleDelete(recipe)" class="btn btn-simple btn-warning">
+            <i class="fas fa-trash"></i> Supprimer
+          </a>
+          <a routerLink="/recipes" class="btn btn-simple btn-default"><i class="fas fa-arrow-alt-circle-left"></i>
+            Retour
+            aux
+            recettes</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FIN DU DETAIL DE LA RECETTE -->
+<div class="section">
+  <div class="parallax parallax-small">
+    <div class="image" style="background-image: url({{ recipe.illustration }})"></div>
+  </div>
+
+</div>
+
+<!-- <div class="container mt-3" *ngIf="recipe">
   <h1>{{this.recipe.title}}</h1>
   <div class="row mt-4">
     <div class="col">
@@ -24,4 +112,3 @@
       <div [innerHTML]="recipe.content"></div>
     </div>
   </div> <!-- Fin de row -->
-</div>

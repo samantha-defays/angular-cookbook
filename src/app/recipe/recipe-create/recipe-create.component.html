@@ -46,8 +46,8 @@
 
       <div class="form-group">
         <label for="content" class="sr-only">Etapes de la recette</label>
-        <angular-editor id="content" class="fadeIn third form-control" formControlName="content"
-          placeholder="Etapes de la recette" [config]="editorConfig" [class.is-invalid]="
+        <angular-editor id="content" class="form-control" formControlName="content" placeholder="Etapes de la recette"
+          [config]="editorConfig" [class.is-invalid]="
         submitted && form.controls['content'].invalid"></angular-editor>
         <p class=" invalid-feedback">
           {{ form.controls["content"].getError("invalid") }}

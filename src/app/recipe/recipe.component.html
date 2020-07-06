@@ -1,5 +1,51 @@
-<div class="container mt-3">
+<div class="section section-header-blog">
+  <div class="parallax filter filter-color-black">
+    <div class="image" style="background-image:url('assets/images/recipe-header-2.jpg')">
+    </div>
+    <div class="container">
+      <div class="content">
+        <div class="title-area">
+          <h1>Recettes</h1>
+          <h3>“La vraie cuisine est une forme d’art. Un cadeau à partager.”</h3>
+          <button type="button" class="btn btn-white btn-fill"><i class="fas fa-plus"></i> Ajouter</button>
+        </div>
+      </div>
 
+    </div>
+  </div>
+</div>
+<!-- FIN DU HEADER -->
+
+<div class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4" *ngFor="let r of getRecipesForCurrentPage()">
+        <div class="card card-blog card-plain">
+          <a routerLink="/recipes/view/{{ r.id }}" class="header">
+            <img src="{{ r.illustration }}" class="image-header" alt="{{ r.title }}">
+          </a>
+          <div class="content">
+            <h6 class="card-date">{{ r.createdAt | date: "dd/MM/yyyy" }}</h6>
+            <a routerLink="/recipes/view/{{ r.id }}" class="card-title">
+              <h3>{{ r.title }}</h3>
+            </a>
+            <div class="line-divider line-danger"></div>
+            <h6 class="card-category">
+              <span *ngFor="let category of r.categories">{{ category.name }}</span>
+            </h6>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-pagination [currentPage]="currentPage" [items]="recipes.length" [itemsPerPage]="itemsPerPage"
+  (pageChanged)="currentPage = $event" *ngIf="recipes.length"></app-pagination>
+
+<!-- FIN DES CARTES DE RECETTES -->
+
+<!-- <div class="container mt-3">
   <div class="row mt-5 d-flex justify-content-center">
     <a routerLink="/recipes/create" class="btn btn-primary btn-sm"><i class="fas fa-plus-circle"></i> Nouvelle
       recette</a>
@@ -9,16 +55,15 @@
   <div class="row mt-3">
     <div class="col-sm-12 col-m-12 col-lg-4 mb-5 mt-4" *ngFor="let r of getRecipesForCurrentPage()">
       <div class="card h-100">
-        <img src="{{ r.illustration }}" class="card-img-top" alt="{{ r.title }}" *ngIf="r.illustration">
+        <img src="{{ r.illustration }}" class="card-img-top" alt="{{ r.title }}" *ngIf="r.illustration" />
         <div class="card-body">
-
           <h5 class="card-title">{{ r.title }}</h5>
           <p *ngIf="r.cookingTime || r.preparationTime">
             <span class="badge badge-warning mr-1 ml-1" *ngIf="r.preparationTime">
-              Préparation: {{ r.preparationTime}} min
+              Préparation: {{ r.preparationTime }} min
             </span>
             <span class="badge badge-warning mr-1 ml-1" *ngIf="r.cookingTime">
-              Cuisson: {{ r.cookingTime}} min
+              Cuisson: {{ r.cookingTime }} min
             </span>
           </p>
           <div class="card-text" [innerHTML]="r.description"></div>
@@ -31,20 +76,21 @@
             </p>
             <p>
               <small>
-                {{ r.createdAt | date:'dd/MM/yyyy'}}
+                {{ r.createdAt | date: "dd/MM/yyyy" }}
               </small>
             </p>
           </div>
           <div class="d-flex justify-content-end">
-            <a routerLink="/recipes/view/{{r.id}}" class="btn btn-outline-primary btn-sm">Voir plus...</a>
+            <a routerLink="/recipes/view/{{ r.id }}" class="btn btn-outline-primary btn-sm">Voir plus...</a>
           </div>
         </div>
       </div>
     </div>
+  </div>
 
-
+  <div class="row mt-3" *ngIf="!recipes.length">
+    <p>Vous n'avez pas de recettes.</p>
   </div>
 </div>
 
-<app-pagination [currentPage]="currentPage" [items]="recipes.length" [itemsPerPage]="itemsPerPage"
-  (pageChanged)="currentPage = $event"></app-pagination>
+ -->

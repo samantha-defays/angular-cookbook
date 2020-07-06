@@ -1,7 +1,7 @@
 /* BASIC */
 
 html {
-  background-color: rgba(94, 182, 157, 0.4);
+  background-color: none;
   font-family: inherit;
 }
 
@@ -11,7 +11,7 @@ body {
 
 a,
 .fas {
-  color: #5eb69d;
+  color: #e78b90;
   display: inline-block;
   text-decoration: none;
   font-weight: 400;
@@ -72,7 +72,7 @@ h2.inactive {
 
 h2.active {
   color: #0d0d0d;
-  border-bottom: 2px solid #5EB69D;
+  border-bottom: 2px solid #e78b90;
 }
 
 
@@ -82,7 +82,7 @@ h2.active {
 input[type=button],
 button[type=submit],
 input[type=reset] {
-  background-color: #5EB69D;
+  background-color: #e78b90;
   border: none;
   color: white;
   padding: 15px 80px;
@@ -106,7 +106,7 @@ input[type=reset] {
 input[type=button]:hover,
 input[type=submit]:hover,
 input[type=reset]:hover {
-  background-color: #5EB69D;
+  background-color: #e78b90;
 }
 
 input[type=button]:active,
@@ -144,7 +144,7 @@ input[type=password] {
 input[type=text]:focus,
 input[type=password]:focus {
   background-color: #fff;
-  border-bottom: 2px solid #5EB69D;
+  border-bottom: 2px solid #e78b90;
 }
 
 input[type=text]:placeholder {
@@ -268,7 +268,7 @@ input[type=text]:placeholder {
   bottom: -10px;
   width: 0;
   height: 2px;
-  background-color: #5EB69D;
+  background-color: #e78b90;
   content: "";
   transition: width 0.2s;
 }
@@ -291,4 +291,9 @@ input[type=text]:placeholder {
 
 #icon {
   width: 60%;
+}
+
+
+.wrapper {
+  background-color: rgba(0, 0, 0, 0.0) !important;
 }

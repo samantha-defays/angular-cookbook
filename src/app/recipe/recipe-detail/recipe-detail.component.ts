@@ -24,6 +24,7 @@ export class RecipeDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.ngxService.start();
+
     this.route.paramMap
       .pipe(
         map((params) => params.get('id')),
