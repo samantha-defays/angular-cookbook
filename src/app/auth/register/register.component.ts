@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
 import { ToastrService } from 'ngx-toastr';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 
@@ -13,11 +13,11 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
   form = new FormGroup({
-    firstName: new FormControl(''),
-    lastName: new FormControl(''),
-    email: new FormControl(''),
+    firstName: new FormControl('', Validators.required),
+    lastName: new FormControl('', Validators.required),
+    email: new FormControl('', [Validators.required, Validators.email]),
     photo: new FormControl(''),
-    password: new FormControl(''),
+    password: new FormControl('', Validators.required),
   });
   submitted = false;
   error = false;
@@ -37,6 +37,7 @@ export class RegisterComponent implements OnInit {
 
     if (this.form.invalid) {
       this.ngxService.stop();
+      this.error = true;
       return;
     }
 

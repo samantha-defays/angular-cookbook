@@ -1,24 +1,18 @@
 <div class="container mt-3">
-  <h1>Mes recettes</h1>
 
+  <div class="row mt-5 d-flex justify-content-center">
+    <a routerLink="/recipes/create" class="btn btn-primary btn-sm"><i class="fas fa-plus-circle"></i> Nouvelle
+      recette</a>
+    <a routerLink="/categories" class="btn btn-primary btn-sm ml-2"><i class="fas fa-sort-alpha-up"></i> Tri par
+      catégories</a>
+  </div>
   <div class="row mt-3">
-    <a routerLink="/recipes/create" class="btn btn-block btn-primary">Nouvelle recette</a>
     <div class="col-sm-12 col-m-12 col-lg-4 mb-5 mt-4" *ngFor="let r of getRecipesForCurrentPage()">
-      <div class="card">
+      <div class="card h-100">
         <img src="{{ r.illustration }}" class="card-img-top" alt="{{ r.title }}" *ngIf="r.illustration">
         <div class="card-body">
-          <p *ngIf="r.categories">
-            <span class="badge badge-secondary ml-1 mr-1" *ngFor="let category of r.categories">
-              {{ category.name }}
-            </span>
-          </p>
+
           <h5 class="card-title">{{ r.title }}</h5>
-          <div class="card-text" [innerHTML]="r.description"></div>
-          <p>
-            <small>
-              {{ r.createdAt | date:'dd/MM/yyyy'}}
-            </small>
-          </p>
           <p *ngIf="r.cookingTime || r.preparationTime">
             <span class="badge badge-warning mr-1 ml-1" *ngIf="r.preparationTime">
               Préparation: {{ r.preparationTime}} min
@@ -27,7 +21,23 @@
               Cuisson: {{ r.cookingTime}} min
             </span>
           </p>
-          <a routerLink="/recipes/view/{{r.id}}" class="btn btn-outline-primary btn-sm">Voir plus...</a>
+          <div class="card-text" [innerHTML]="r.description"></div>
+
+          <div class="d-flex justify-content-between">
+            <p *ngIf="r.categories">
+              <span class="badge badge-primary ml-1 mr-1" *ngFor="let category of r.categories">
+                {{ category.name }}
+              </span>
+            </p>
+            <p>
+              <small>
+                {{ r.createdAt | date:'dd/MM/yyyy'}}
+              </small>
+            </p>
+          </div>
+          <div class="d-flex justify-content-end">
+            <a routerLink="/recipes/view/{{r.id}}" class="btn btn-outline-primary btn-sm">Voir plus...</a>
+          </div>
         </div>
       </div>
     </div>

@@ -14,6 +14,7 @@ import { NgxUiLoaderService } from 'ngx-ui-loader';
 })
 export class ProfileEditComponent implements OnInit {
   submitted = false;
+  error = false;
   user: User;
   newUser: User;
   form = new FormGroup({
@@ -51,6 +52,7 @@ export class ProfileEditComponent implements OnInit {
 
     if (this.form.invalid) {
       this.ngxService.stop();
+      this.error = true;
       return;
     }
 
@@ -73,12 +75,14 @@ export class ProfileEditComponent implements OnInit {
       (user) => {
         // réussite
         this.ngxService.stop();
+        this.error = false;
         this.toastr.success('Votre profil a bien été mis à jour');
         this.router.navigateByUrl('/profile');
       },
       (error) => {
         // erreur
         this.ngxService.stop();
+        this.error = true;
         this.toastr.warning(
           "Il y a eu un problème, nous n'avons pas pu modifier votre profil"
         );

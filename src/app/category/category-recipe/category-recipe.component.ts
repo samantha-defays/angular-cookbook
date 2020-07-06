@@ -1,10 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 import { Recipe } from 'src/app/recipe/recipe';
 import { RecipeService } from 'src/app/recipe/recipe.service';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { UserService } from 'src/app/auth/user.service';
 import { AuthService } from 'src/app/auth/auth.service';
 import { ToastrService } from 'ngx-toastr';
+import { CategoryService } from '../category.service';
+import { ActivatedRoute } from '@angular/router';
+import { forkJoin, Observable } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-category-recipe',
@@ -12,34 +16,46 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./category-recipe.component.css'],
 })
 export class CategoryRecipeComponent implements OnInit {
+  recipes$: Observable<any>;
   recipes: Recipe[] = [];
+  categoryId: number;
   userId: number;
+
   currentPage = 1;
   itemsPerPage = 10;
 
   constructor(
-    private recipeService: RecipeService,
+    private categoryService: CategoryService,
     private ngxService: NgxUiLoaderService,
     private authService: AuthService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
     this.ngxService.start();
-
     this.userId = this.authService.getIdFromToken();
 
-    this.recipeService.findAll().subscribe(
-      (recipes) => {
+    this.recipes$ = this.route.paramMap.pipe(
+      switchMap((params) => {
+        this.categoryId = +params.get('id');
+        this.ngxService.start();
+        return this.categoryService.find(this.categoryId);
+      })
+    );
+
+    this.recipes$.subscribe(
+      (category) => {
         // réussite
-        this.ngxService.stop();
-        recipes.forEach((recipe) => {
+        this.recipes = [];
+        category.recipes.forEach((recipe) => {
           if (recipe.owner.search(this.userId) === -1) {
             return;
           }
           this.recipes.push(recipe);
         });
         this.recipes.reverse();
+        this.ngxService.stop();
       },
       (error) => {
         // erreur

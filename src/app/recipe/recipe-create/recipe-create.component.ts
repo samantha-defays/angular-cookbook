@@ -94,6 +94,7 @@ export class RecipeCreateComponent implements OnInit {
         'link',
         'unlink',
         'removeFormat',
+        'toggleEditorMode',
       ],
     ],
   };

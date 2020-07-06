@@ -11,7 +11,7 @@ import { NgxUiLoaderService } from 'ngx-ui-loader';
 export class RecipeComponent implements OnInit {
   recipes: Recipe[] = [];
   currentPage = 1;
-  itemsPerPage = 10;
+  itemsPerPage = 12;
 
   constructor(
     private recipeService: RecipeService,

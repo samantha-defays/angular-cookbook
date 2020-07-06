@@ -16,4 +16,8 @@ export class CategoryService {
       .get<Category[]>(environment.apiUrl + '/categories')
       .pipe(map((data) => data['hydra:member'] as Category[]));
   }
+
+  find(id: number): Observable<Category> {
+    return this.http.get<Category>(environment.apiUrl + '/categories/' + id);
+  }
 }
