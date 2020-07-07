@@ -16,7 +16,7 @@
 </div>
 <!-- FIN DU HEADER -->
 
-<div class="section">
+<div class="section" *ngIf="recipe">
   <div class="container">
     <div class="row">
 
@@ -55,9 +55,9 @@
 
         <ng-container *ngIf="recipe.categories">
           <h3 class="social-title">Catégories</h3>
-          <p *nFor="let c of recipe.categories">
-            <span class="label label-fill label-danger ml-1">{{ c.name }}</span>
-          </p>
+          <ng-container *ngFor="let c of recipe.categories">
+            <span class="label label-fill label-danger ml-1 mr-2">{{ c.name }}</span>
+          </ng-container>
         </ng-container>
 
         <div>
@@ -67,6 +67,9 @@
           </a>
           <a (click)="handleDelete(recipe)" class="btn btn-simple btn-warning">
             <i class="fas fa-trash"></i> Supprimer
+          </a>
+          <a routerLink="/recipes/create" class="btn btn-simple btn-primary">
+            <i class="fas fa-plus"></i> Ajouter
           </a>
           <a routerLink="/recipes" class="btn btn-simple btn-default"><i class="fas fa-arrow-alt-circle-left"></i>
             Retour

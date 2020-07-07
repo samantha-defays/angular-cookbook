@@ -20,6 +20,7 @@ export class CategoryRecipeComponent implements OnInit {
   recipes: Recipe[] = [];
   categoryId: number;
   userId: number;
+  categoryName: string;
 
   currentPage = 1;
   itemsPerPage = 10;
@@ -48,6 +49,7 @@ export class CategoryRecipeComponent implements OnInit {
       (category) => {
         // réussite
         this.recipes = [];
+        this.categoryName = category.name;
         category.recipes.forEach((recipe) => {
           if (recipe.owner.search(this.userId) === -1) {
             return;

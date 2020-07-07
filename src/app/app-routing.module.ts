@@ -21,7 +21,6 @@ const routes: Routes = [
     pathMatch: 'full',
     canActivate: [AuthGuard],
   },
-  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
   {
     path: 'profile/edit',
     component: ProfileEditComponent,

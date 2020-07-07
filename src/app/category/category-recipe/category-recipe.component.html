@@ -1,37 +1,77 @@
-<div class="container mt-2">
-  <div class="row">
-    <div class="col-sm-12 sol-md-6 col-lg-4" *ngFor="let r of recipes">
-      <div class="card">
-        <img src="{{ r.illustration }}" class="card-img-top" alt="{{ r.title }}" *ngIf="r.illustration">
-        <div class="card-body">
-          <p *ngIf="r.categories">
-            <span class="badge badge-secondary ml-1 mr-1" *ngFor="let category of r.categories">
-              {{ category.name }}
-            </span>
-          </p>
-          <h5 class="card-title">{{ r.title }}</h5>
-          <div class="card-text" [innerHTML]="r.description"></div>
-          <p>
-            <small>
-              {{ r.createdAt | date:'dd/MM/yyyy'}}
-            </small>
-          </p>
-          <p *ngIf="r.cookingTime || r.preparationTime">
-            <span class="badge badge-warning mr-1 ml-1" *ngIf="r.preparationTime">
-              Préparation: {{ r.preparationTime}} min
-            </span>
-            <span class="badge badge-warning mr-1 ml-1" *ngIf="r.cookingTime">
-              Cuisson: {{ r.cookingTime}} min
-            </span>
-          </p>
-          <a routerLink="/recipes/view/{{r.id}}" class="btn btn-outline-primary btn-sm">Voir plus...</a>
+<div class="section section-card-blog">
+  <div class="container">
+    <div class="title-area">
+      <h5 class="text-gray">Dans la catégorie</h5>
+      <h2>{{ categoryName }}</h2>
+      <div class="separator separator-danger">✻</div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4" *ngFor="let r of recipes">
+        <div class="card card-blog">
+          <a routerLink="/recipes/view/{{ r.id }}" class="header">
+            <img src="{{ r.illustration }}" class="image-header" alt="{{ r.title }}">
+          </a>
+          <div class="content">
+            <div class="circle-black">
+              <div class="circle">
+                <div class="date-wrapper">
+                  <span class="date">{{ r.createdAt | date:'dd'}}</span>
+                  <span class="month">{{ r.createdAt | date:'MM/yyyy'}}</span>
+                </div>
+              </div>
+            </div>
+            <a routerLink="/recipes/view/{{ r.id }}" class="card-title">
+              <h3>{{ r.title }}</h3>
+            </a>
+            <div *ngFor="let c of r.categories">
+              <h6 class="card-category text-warning">{{ c.name }}</h6>
+            </div>
+            <p class="text-description text-gray">{{ r.description }}</p>
+          </div>
         </div>
       </div>
     </div>
-    <div class="row" *ngIf="!recipes">
-      <p>Il n'y a aucune recette dans cette catégorie.</p>
-    </div>
   </div>
 
+
+  <!-- <div class="section section-gray">
+
+  <div class="container mt-2">
+    <div class="row">
+      <div class="col-sm-12 sol-md-6 col-lg-4" *ngFor="let r of recipes">
+        <div class="card">
+          <img src="{{ r.illustration }}" class="card-img-top" alt="{{ r.title }}" *ngIf="r.illustration">
+          <div class="card-body">
+            <p *ngIf="r.categories">
+              <span class="badge badge-secondary ml-1 mr-1" *ngFor="let category of r.categories">
+                {{ category.name }}
+              </span>
+            </p>
+            <h5 class="card-title">{{ r.title }}</h5>
+            <div class="card-text" [innerHTML]="r.description"></div>
+            <p>
+              <small>
+                {{ r.createdAt | date:'dd/MM/yyyy'}}
+              </small>
+            </p>
+            <p *ngIf="r.cookingTime || r.preparationTime">
+              <span class="badge badge-warning mr-1 ml-1" *ngIf="r.preparationTime">
+                Préparation: {{ r.preparationTime}} min
+              </span>
+              <span class="badge badge-warning mr-1 ml-1" *ngIf="r.cookingTime">
+                Cuisson: {{ r.cookingTime}} min
+              </span>
+            </p>
+            <a routerLink="/recipes/view/{{r.id}}" class="btn btn-outline-primary btn-sm">Voir plus...</a>
+          </div>
+        </div>
+      </div>
+      <div class="row" *ngIf="!recipes">
+        <p>Il n'y a aucune recette dans cette catégorie.</p>
+      </div>
+    </div>
+  </div> -->
+
   <app-pagination [currentPage]="currentPage" [items]="recipes.length" [itemsPerPage]="itemsPerPage"
-    (pageChanged)="currentPage = $event"></app-pagination>
+    (pageChanged)="currentPage = $event" *ngIf="itemsPerPage < recipes.length"></app-pagination>

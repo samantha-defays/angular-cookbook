@@ -1,7 +1,7 @@
 /* BASIC */
 
 html {
-  background-color: rgba(94, 182, 157, 0.4);
+  background-color: none;
   font-family: inherit;
 }
 
@@ -11,7 +11,7 @@ body {
 
 a,
 .fas {
-  color: #5eb69d;
+  color: #e78b90;
   display: inline-block;
   text-decoration: none;
   font-weight: 400;
@@ -72,16 +72,17 @@ h2.inactive {
 
 h2.active {
   color: #0d0d0d;
-  border-bottom: 2px solid #5EB69D;
+  border-bottom: 2px solid #e78b90;
 }
 
 
 
 /* FORM TYPOGRAPHY*/
 
+input[type=button],
 button[type=submit],
 input[type=reset] {
-  background-color: #5EB69D;
+  background-color: #e78b90;
   border: none;
   color: white;
   padding: 15px 80px;
@@ -90,8 +91,8 @@ input[type=reset] {
   display: inline-block;
   text-transform: uppercase;
   font-size: 13px;
-  -webkit-box-shadow: 0 10px 30px 0 rgba(94, 182, 157, 0.4);
-  box-shadow: 0 10px 30px 0 rgba(94, 182, 157, 0.4);
+  -webkit-box-shadow: 0 10px 30px 0 rgba(231, 139, 144, 0.4);
+  box-shadow: 0 10px 30px 0 rgba(231, 139, 144, 0.4);
   -webkit-border-radius: 5px 5px 5px 5px;
   border-radius: 5px 5px 5px 5px;
   margin: 5px 20px 40px 20px;
@@ -102,12 +103,14 @@ input[type=reset] {
   transition: all 0.3s ease-in-out;
 }
 
-button[type=submit]:hover,
+button[type=button]:hover,
+input[type=submit]:hover,
 input[type=reset]:hover {
-  background-color: #5EB69D;
+  background-color: #e78b90;
 }
 
-button[type=submit]:active,
+button[type=button]:active,
+input[type=submit]:active,
 input[type=reset]:active {
   -moz-transform: scale(0.95);
   -webkit-transform: scale(0.95);
@@ -117,8 +120,8 @@ input[type=reset]:active {
 }
 
 input[type=text],
-input[type=password],
-input[type=email] {
+input[type=email],
+input[type=password] {
   background-color: #f6f6f6;
   border: none;
   color: #0d0d0d;
@@ -140,10 +143,10 @@ input[type=email] {
 }
 
 input[type=text]:focus,
-input[type=password]:focus,
-input[type=email]:focus {
+input[type=email]:focus,
+input[type=password]:focus {
   background-color: #fff;
-  border-bottom: 2px solid #5EB69D;
+  border-bottom: 2px solid #e78b90;
 }
 
 input[type=text]:placeholder {
@@ -267,7 +270,7 @@ input[type=text]:placeholder {
   bottom: -10px;
   width: 0;
   height: 2px;
-  background-color: #5EB69D;
+  background-color: #e78b90;
   content: "";
   transition: width 0.2s;
 }
@@ -290,4 +293,9 @@ input[type=text]:placeholder {
 
 #icon {
   width: 60%;
+}
+
+
+.wrapper {
+  background-color: rgba(0, 0, 0, 0.0) !important;
 }

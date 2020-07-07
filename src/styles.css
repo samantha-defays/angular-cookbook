@@ -2,6 +2,18 @@
 @import '~ngx-toastr/toastr';
 @import url('../src/assets/css/bootstrap.css');
 
+.toast-success {
+  background-color: #e78b90;
+}
+
+.toast-warning {
+  background-color: #BF9A70;
+}
+
+.toast-danger {
+  background-color: #F78244;
+}
+
 /*!
 
  =========================================================

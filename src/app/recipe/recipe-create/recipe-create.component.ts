@@ -17,6 +17,7 @@ import { NgxUiLoaderService } from 'ngx-ui-loader';
 export class RecipeCreateComponent implements OnInit {
   recipeCategories: Category[] = [];
   submitted = false;
+  error = false;
   selectedCategories = [];
 
   form = new FormGroup({
@@ -35,7 +36,7 @@ export class RecipeCreateComponent implements OnInit {
     editable: true,
     spellcheck: true,
     height: 'auto',
-    minHeight: '0',
+    minHeight: '500',
     maxHeight: 'auto',
     width: 'auto',
     minWidth: '0',
@@ -146,6 +147,7 @@ export class RecipeCreateComponent implements OnInit {
 
     if (this.form.invalid) {
       this.ngxService.stop();
+      this.error = true;
       return;
     }
 
@@ -158,12 +160,14 @@ export class RecipeCreateComponent implements OnInit {
         (recipe) => {
           // réussite de l'enregistrement
           this.ngxService.stop();
+          this.error = false;
           this.toastr.success('Recette enregistrée !');
           this.router.navigateByUrl('/recipes');
         },
         (error) => {
           // échec de la création
           this.ngxService.stop();
+          this.error = true;
           if (error.status === 400 && error.error.violations) {
             for (const violation of error.error.violations) {
               const nomDuChamp = violation.propertyPath;

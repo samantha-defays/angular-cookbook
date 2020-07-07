@@ -56,20 +56,10 @@ export class ProfileEditComponent implements OnInit {
       return;
     }
 
-    if (!this.form.value.password) {
-      // si le mot de passe reste inchangé
-      this.newUser = {
-        ...this.user,
-        ...this.form.value,
-        password: this.user.password,
-      };
-    } else {
-      // s'il a été modifié
-      this.newUser = {
-        ...this.user,
-        ...this.form.value,
-      };
-    }
+    this.newUser = {
+      ...this.user,
+      ...this.form.value,
+    };
 
     this.userService.update(this.newUser).subscribe(
       (user) => {
@@ -77,7 +67,7 @@ export class ProfileEditComponent implements OnInit {
         this.ngxService.stop();
         this.error = false;
         this.toastr.success('Votre profil a bien été mis à jour');
-        this.router.navigateByUrl('/profile');
+        this.router.navigateByUrl('/profile/edit');
       },
       (error) => {
         // erreur

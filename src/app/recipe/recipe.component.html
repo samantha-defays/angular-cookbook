@@ -7,7 +7,8 @@
         <div class="title-area">
           <h1>Recettes</h1>
           <h3>“La vraie cuisine est une forme d’art. Un cadeau à partager.”</h3>
-          <button type="button" class="btn btn-white btn-fill"><i class="fas fa-plus"></i> Ajouter</button>
+          <a type="button" class="btn btn-white btn-fill" routerLink="/recipes/create"><i class="fas fa-plus"></i>
+            Ajouter</a>
         </div>
       </div>
 
@@ -41,7 +42,7 @@
 </div>
 
 <app-pagination [currentPage]="currentPage" [items]="recipes.length" [itemsPerPage]="itemsPerPage"
-  (pageChanged)="currentPage = $event" *ngIf="recipes.length"></app-pagination>
+  (pageChanged)="currentPage = $event" *ngIf="itemsPerPage < recipes.length"></app-pagination>
 
 <!-- FIN DES CARTES DE RECETTES -->
 
