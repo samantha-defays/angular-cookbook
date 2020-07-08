@@ -28,10 +28,12 @@
                 <label for="email" class="sr-only">Adresse email</label>
                 <input type="text" id="email" class="fadeIn second form-control" placeholder="Adresse email"
                   formControlName="username" [class.is-invalid]="form.controls['username'].invalid && submitted">
-                <p class="invalid-feedback" *ngIf="form.controls['username'].hasError('required') && submitted">
+                <p class="invalid-feedback text-danger"
+                  *ngIf="form.controls['username'].hasError('required') && submitted">
                   L'email est obligatoire
                 </p>
-                <p class="invalid-feedback" *ngIf="form.controls['username'].hasError('email') && submitted">
+                <p class="invalid-feedback text-danger"
+                  *ngIf="form.controls['username'].hasError('email') && submitted">
                   Le format de l'adresse n'est pas valide
                 </p>
               </div>
@@ -40,7 +42,8 @@
                 <label for="password" class="sr-only">Mot de passe</label>
                 <input type="password" id="password" class="fadeIn third form-control" placeholder="Mot de passe"
                   formControlName="password" [class.is-invalid]="form.controls['password'].invalid && submitted">
-                <p class="invalid-feedback" *ngIf="form.controls['password'].hasError('required') && submitted">
+                <p class="invalid-feedback text-danger"
+                  *ngIf="form.controls['password'].hasError('required') && submitted">
                   Le mot de passe est obligatoire
                 </p>
               </div>
@@ -48,7 +51,7 @@
               <button type="submit" class="btn btn-primary fadeIn fourth">Connexion</button>
             </form>
 
-            <!-- Remind Passowrd -->
+            <!-- Inscription -->
             <div id="formFooter">
               <a routerLink="/register">Pas encore inscrit ? <i class="fas fa-heart"></i></a>
             </div>

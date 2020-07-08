@@ -18,11 +18,11 @@ export class ProfileEditComponent implements OnInit {
   user: User;
   newUser: User;
   form = new FormGroup({
-    firstName: new FormControl(''),
-    lastName: new FormControl(''),
-    email: new FormControl(''),
+    firstName: new FormControl('', Validators.required),
+    lastName: new FormControl('', Validators.required),
+    email: new FormControl('', [Validators.required, Validators.email]),
     photo: new FormControl(''),
-    password: new FormControl(''),
+    password: new FormControl('', Validators.required),
   });
 
   constructor(
@@ -40,9 +40,9 @@ export class ProfileEditComponent implements OnInit {
 
     // remplissage des informations de l'utilisateur
     this.userService.find(id).subscribe((user) => {
-      this.ngxService.stop();
       this.user = user;
       this.form.patchValue({ ...this.user, password: '' });
+      this.ngxService.stop();
     });
   }
 
@@ -73,6 +73,18 @@ export class ProfileEditComponent implements OnInit {
         // erreur
         this.ngxService.stop();
         this.error = true;
+        if (error.status === 400 && error.error.violations) {
+          for (const violation of error.error.violations) {
+            const nomDuChamp = violation.propertyPath;
+            const message = violation.message;
+
+            this.form.controls[nomDuChamp].setErrors({ invalid: message });
+          }
+          this.toastr.warning(
+            "Il y a eu un problème, nous n'avons pas pu modifier votre profil"
+          );
+          return;
+        }
         this.toastr.warning(
           "Il y a eu un problème, nous n'avons pas pu modifier votre profil"
         );

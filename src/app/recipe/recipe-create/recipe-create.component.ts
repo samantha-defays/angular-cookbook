@@ -35,8 +35,8 @@ export class RecipeCreateComponent implements OnInit {
   editorConfig: AngularEditorConfig = {
     editable: true,
     spellcheck: true,
-    height: 'auto',
-    minHeight: '500',
+    height: '120px',
+    minHeight: '200',
     maxHeight: 'auto',
     width: 'auto',
     minWidth: '0',
@@ -45,9 +45,10 @@ export class RecipeCreateComponent implements OnInit {
     showToolbar: true,
     placeholder: 'Votre texte ici',
     defaultParagraphSeparator: '',
-    defaultFontName: '',
+    defaultFontName: 'Cambo',
     defaultFontSize: '',
     fonts: [
+      { class: 'cambo', name: 'Cambo' },
       { class: 'arial', name: 'Arial' },
       { class: 'times-new-roman', name: 'Times New Roman' },
       { class: 'calibri', name: 'Calibri' },
@@ -148,6 +149,7 @@ export class RecipeCreateComponent implements OnInit {
     if (this.form.invalid) {
       this.ngxService.stop();
       this.error = true;
+      console.log(this.form);
       return;
     }
 

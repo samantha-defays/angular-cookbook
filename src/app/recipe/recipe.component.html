@@ -19,10 +19,10 @@
 
 <div class="section">
   <div class="container">
-    <div class="row">
+    <div class="row display-flex">
       <div class="col-md-4" *ngFor="let r of getRecipesForCurrentPage()">
         <div class="card card-blog card-plain">
-          <a routerLink="/recipes/view/{{ r.id }}" class="header">
+          <a routerLink="/recipes/view/{{ r.id }}" class="header" *ngIf="r.illustration">
             <img src="{{ r.illustration }}" class="image-header" alt="{{ r.title }}">
           </a>
           <div class="content">
@@ -32,66 +32,30 @@
             </a>
             <div class="line-divider line-danger"></div>
             <h6 class="card-category">
-              <span *ngFor="let category of r.categories">{{ category.name }}</span>
+              <span *ngFor="let category of r.categories" class="tags">{{ category.name }}</span>
             </h6>
           </div>
         </div>
       </div>
+
+      <div class="col-md-12" *ngIf="recipes.length === 0">
+        <div class="card card-blog card-plain">
+          <div class="content">
+
+            <h3>Pas encore de recette ?</h3>
+
+            <div class="line-divider line-danger"></div>
+            <h6 class="card-category">
+              <a routerLink="/recipes/create" class="btn btn-danger">Créez-en une !</a>
+            </h6>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>
 
 <app-pagination [currentPage]="currentPage" [items]="recipes.length" [itemsPerPage]="itemsPerPage"
   (pageChanged)="currentPage = $event" *ngIf="itemsPerPage < recipes.length"></app-pagination>
-
 <!-- FIN DES CARTES DE RECETTES -->
-
-<!-- <div class="container mt-3">
-  <div class="row mt-5 d-flex justify-content-center">
-    <a routerLink="/recipes/create" class="btn btn-primary btn-sm"><i class="fas fa-plus-circle"></i> Nouvelle
-      recette</a>
-    <a routerLink="/categories" class="btn btn-primary btn-sm ml-2"><i class="fas fa-sort-alpha-up"></i> Tri par
-      catégories</a>
-  </div>
-  <div class="row mt-3">
-    <div class="col-sm-12 col-m-12 col-lg-4 mb-5 mt-4" *ngFor="let r of getRecipesForCurrentPage()">
-      <div class="card h-100">
-        <img src="{{ r.illustration }}" class="card-img-top" alt="{{ r.title }}" *ngIf="r.illustration" />
-        <div class="card-body">
-          <h5 class="card-title">{{ r.title }}</h5>
-          <p *ngIf="r.cookingTime || r.preparationTime">
-            <span class="badge badge-warning mr-1 ml-1" *ngIf="r.preparationTime">
-              Préparation: {{ r.preparationTime }} min
-            </span>
-            <span class="badge badge-warning mr-1 ml-1" *ngIf="r.cookingTime">
-              Cuisson: {{ r.cookingTime }} min
-            </span>
-          </p>
-          <div class="card-text" [innerHTML]="r.description"></div>
-
-          <div class="d-flex justify-content-between">
-            <p *ngIf="r.categories">
-              <span class="badge badge-primary ml-1 mr-1" *ngFor="let category of r.categories">
-                {{ category.name }}
-              </span>
-            </p>
-            <p>
-              <small>
-                {{ r.createdAt | date: "dd/MM/yyyy" }}
-              </small>
-            </p>
-          </div>
-          <div class="d-flex justify-content-end">
-            <a routerLink="/recipes/view/{{ r.id }}" class="btn btn-outline-primary btn-sm">Voir plus...</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="row mt-3" *ngIf="!recipes.length">
-    <p>Vous n'avez pas de recettes.</p>
-  </div>
-</div>
-
- -->

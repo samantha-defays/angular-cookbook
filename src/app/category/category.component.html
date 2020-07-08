@@ -16,19 +16,53 @@
 
 </div>
 
-<div class="section section-card-blog">
+<div class="section section-our-clients">
   <div class="container">
     <div class="row">
       <div class="col-12">
-        <nav class="d-flex justify-content-around">
-          <a *ngFor="let c of categories" routerLink="/categories/{{ c.id }}" class="btn btn-fill btn-default mr-2">
-            {{ c.name }}
-          </a>
-        </nav>
+        <ul class="nav nav-pills nav-text">
+          <li *ngFor="let c of categories" class="presentation">
+            <a routerLink="/categories/{{ c.id }}" class="btn btn-simple btn-danger">
+              {{ c.name }}
+            </a>
+          </li>
+        </ul>
       </div>
     </div>
+
+    <div class="col-md-12" *ngIf="!selectedCategory">
+      <div class="card card-blog card-plain">
+        <div class="content">
+
+          <h3>Choisissez une catégorie</h3>
+
+          <div class="line-divider line-danger"></div>
+        </div>
+      </div>
+    </div>
+
     <div class="row">
       <router-outlet></router-outlet>
     </div>
   </div>
 </div>
+<footer class="footer footer-color-black" data-color="black">
+  <div class="container">
+    <nav class="pull-left">
+      <ul>
+        <li>
+          <a routerLink="/recipes">Recettes</a>
+        </li>
+        <li>
+          <a routerLink="/categories">Catégories</a>
+        </li>
+        <li>
+          <a routerLink="/profile/edit">Profil</a>
+        </li>
+      </ul>
+    </nav>
+    <div class="copyright pull-right">
+      2020 My Cookbook
+    </div>
+  </div>
+</footer>

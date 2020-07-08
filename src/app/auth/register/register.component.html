@@ -22,7 +22,11 @@
                 <label for="firstName" class="sr-only">Prénom</label>
                 <input type="text" id="firstName" class="fadeIn second form-control" placeholder="Prénom"
                   formControlName="firstName" [class.is-invalid]="submitted && form.controls['firstName'].invalid">
-                <p class="invalid-feedback">
+                <p class="invalid-feedback text-danger"
+                  *ngIf="form.controls['firstName'].hasError('required') && submitted">
+                  Le prénom est obligatoire
+                </p>
+                <p class="invalid-feedback text-danger">
                   {{ form.controls['firstName'].getError('invalid')}}
                 </p>
               </div>
@@ -31,7 +35,11 @@
                 <label for="lastName" class="sr-only">Nom de famille</label>
                 <input type="text" id="lastName" class="fadeIn second form-control" placeholder="Nom de famille"
                   formControlName="lastName" [class.is-invalid]="submitted && form.controls['lastName'].invalid">
-                <p class="invalid-feedback">
+                <p class="invalid-feedback text-danger"
+                  *ngIf="form.controls['lastName'].hasError('required') && submitted">
+                  Le nom est obligatoire
+                </p>
+                <p class="invalid-feedback text-danger">
                   {{ form.controls['lastName'].getError('invalid')}}
                 </p>
               </div>
@@ -40,7 +48,14 @@
                 <label for="email" class="sr-only">Adresse email</label>
                 <input type="email" id="email" class="fadeIn second form-control" placeholder="Adresse email"
                   formControlName="email" [class.is-invalid]="submitted && form.controls['email'].invalid">
-                <p class="invalid-feedback">
+                <p class="invalid-feedback text-danger"
+                  *ngIf="form.controls['email'].hasError('required') && submitted">
+                  L'email est obligatoire
+                </p>
+                <p class="invalid-feedback text-danger" *ngIf="form.controls['email'].hasError('email') && submitted">
+                  Le format de l'adresse n'est pas valide
+                </p>
+                <p class="invalid-feedback text-danger">
                   {{ form.controls['email'].getError('invalid')}}
                 </p>
               </div>
@@ -49,7 +64,10 @@
                 <label for="photo" class="sr-only">URL de la photo de profil</label>
                 <input type="text" id="photo" class="fadeIn third form-control" placeholder="URL de la photo de profil"
                   formControlName="photo" [class.is-invalid]="submitted && form.controls['photo'].invalid">
-                <p class="invalid-feedback">
+                <p class="invalid-feedback text-danger">
+                  {{ form.controls['photo'].getError('invalid')}}
+                </p>
+                <p class="invalid-feedback text-danger">
                   {{ form.controls['photo'].getError('invalid')}}
                 </p>
               </div>
@@ -58,14 +76,23 @@
                 <label for="password" class="sr-only">Mot de passe</label>
                 <input type="password" id="password" class="fadeIn third form-control" formControlName="password"
                   placeholder="Mot de passe" [class.is-invalid]="submitted && form.controls['email'].invalid">
-                <p class="invalid-feedback">
-                  {{ form.controls['email'].getError('invalid')}}
+                <p class="invalid-feedback text-danger"
+                  *ngIf="form.controls['password'].hasError('required') && submitted">
+                  Le mot de passe est obligatoire
+                </p>
+                <p class="invalid-feedback text-danger">
+                  {{ form.controls['password'].getError('invalid')}}
                 </p>
               </div>
 
               <button type="submit" class="fadeIn fourth">Inscription</button>
 
             </form>
+
+            <!-- Connexion -->
+            <div id="formFooter">
+              <a routerLink="/login">Déjà inscrit ? <i class="fas fa-heart"></i></a>
+            </div>
 
           </div>
         </div>

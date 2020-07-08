@@ -38,8 +38,8 @@ export class RecipeEditComponent implements OnInit {
   editorConfig: AngularEditorConfig = {
     editable: true,
     spellcheck: true,
-    height: 'auto',
-    minHeight: '0',
+    height: '120px',
+    minHeight: '200',
     maxHeight: 'auto',
     width: 'auto',
     minWidth: '0',
@@ -48,9 +48,10 @@ export class RecipeEditComponent implements OnInit {
     showToolbar: true,
     placeholder: 'Votre texte ici',
     defaultParagraphSeparator: '',
-    defaultFontName: '',
+    defaultFontName: 'Cambo',
     defaultFontSize: '',
     fonts: [
+      { class: 'cambo', name: 'Cambo' },
       { class: 'arial', name: 'Arial' },
       { class: 'times-new-roman', name: 'Times New Roman' },
       { class: 'calibri', name: 'Calibri' },

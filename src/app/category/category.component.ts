@@ -3,6 +3,8 @@ import { Category } from '../recipe/category';
 import { CategoryService } from './category.service';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-category',
@@ -11,6 +13,8 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class CategoryComponent implements OnInit {
   categories: Category[] = [];
+  route$: Observable<any>;
+  selectedCategory: boolean;
 
   constructor(
     private categoryService: CategoryService,
@@ -26,5 +30,13 @@ export class CategoryComponent implements OnInit {
       this.categories = categories;
       this.categories.sort();
     });
+
+    this.route$ = this.route.paramMap.pipe(
+      switchMap((params) => {
+        if (+params.get('id') == null) {
+          this.selectedCategory = false;
+        }
+      })
+    );
   }
 }

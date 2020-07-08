@@ -14,6 +14,20 @@
   background-color: #F78244;
 }
 
+img.card-blog {
+  max-height: 300px;
+}
+
+.display-flex {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+}
+
+.tags {
+  margin-right: 3px;
+}
+
 /*!
 
  =========================================================

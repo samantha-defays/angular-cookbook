@@ -65,6 +65,10 @@ export class RegisterComponent implements OnInit {
             });
           }
           this.error = false;
+          this.toastr.warning(
+            'Nous avons rencontré un problème',
+            "Echec de l'inscription"
+          );
 
           return;
         }

@@ -1,11 +1,13 @@
 angular-editor {
-  margin-bottom: 100px;
+  margin-bottom: 150px;
 }
 
-.angular-editor-textarea {
+div.angular-editor-textarea {
   background-color: white !important;
+  resize: none !important;
 }
 
 input[type=checkbox] {
   margin-right: 5px;
+  margin-left: 10px;
 }
